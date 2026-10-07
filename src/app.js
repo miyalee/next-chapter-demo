@@ -76,7 +76,10 @@ function updateScreenRoute() {
     state.screen === "setup"
       ? "/setup"
       : `/analysis/${currentSteps()[state.stepIndex].id}`;
-  window.history.replaceState(null, "", url);
+  // A new screen gets its own history entry so the browser back button returns to it.
+  if (url.hash === window.location.hash)
+    window.history.replaceState(null, "", url);
+  else window.history.pushState(null, "", url);
 }
 
 function focusCurrentStep() {
@@ -242,10 +245,15 @@ function initializeRoute() {
     state.stepIndex = index;
   }
   renderApp();
+  // Give the first entry a route so going back to it restores the setup screen.
+  if (state.screen === "setup") {
+    url.hash = "/setup";
+    window.history.replaceState(null, "", url);
+  }
   if (state.screen === "analysis") focusCurrentStep();
 }
 
-window.addEventListener("hashchange", () => {
+window.addEventListener("popstate", () => {
   const route = window.location.hash;
   if (route === "#/setup" || !route) editAnalysis();
   else {
