@@ -1,0 +1,21 @@
+{
+  "name": "next-chapter-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A guided career and city analysis frontend demo for Maya and her family.",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "export:figma": "node scripts/export-figma-pages.cjs",
+    "test": "npm run build && node scripts/smoke-test.mjs"
+  },
+  "devDependencies": {
+    "vite": "8.3.3",
+    "playwright": "1.63.0"
+  }
+}

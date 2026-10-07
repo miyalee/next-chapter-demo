@@ -1,0 +1,15 @@
+# Dependencies and reproducible generated output
+node_modules/
+dist/
+figma-import/
+
+# Local files
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+!.env.example
+coverage/
+playwright-report/
+test-results/
